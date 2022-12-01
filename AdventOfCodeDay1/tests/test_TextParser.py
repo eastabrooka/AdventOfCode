@@ -26,6 +26,7 @@ class TestTextParser(TestCase):
 
     def test_runcase3(self):
         Test = src.TextParser()
-        Test.ReadFile("../input_files/case2.txt")
+        Test.ReadFile("../input_files/case3.txt")
         List = Test.SplitFileIntoElves()
-        print(List)
+
+        Test.DoExtendedChallenge()

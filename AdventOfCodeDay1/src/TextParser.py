@@ -32,17 +32,16 @@ class TextParser:
             print("Please check the path.")
 
     def SplitFileIntoElves(self):
-        ListOfElves = []
         if len(self.FileReadIn) == 0 :
             return False
 
         ElfNumber = 1
 
-        ListOfElves = []
         ElfInventory = []
         TotalCalories = 0
         MaxCaloriesHighWaterMark = 0
         MaxCaloriesElf = 0
+        self.ListOfElves=[]
 
         for line in self.FileReadIn:
             if line.strip():
@@ -51,7 +50,7 @@ class TextParser:
                 TotalCalories += int(line.strip())
             else:
                 print('Next Elf !')
-                ListOfElves += [[[ElfNumber],[ElfInventory],[TotalCalories]]]
+                self.ListOfElves += [[[ElfNumber],[ElfInventory],[TotalCalories]]]
 
                 if TotalCalories > MaxCaloriesHighWaterMark :
                     MaxCaloriesElf = ElfNumber
@@ -61,3 +60,27 @@ class TextParser:
 
 
         return MaxCaloriesElf,MaxCaloriesHighWaterMark
+
+    def DoExtendedChallenge(self):
+        postprocess = []
+
+        for Elf in self.ListOfElves:
+            print("Elf %s has %s" % (Elf[0], Elf[2]))
+            #At this point, I want to go do something else
+            Temp1 = Elf[0]
+            Temp1 = Temp1[0]
+            Temp2 = Elf[2]
+            Temp2 = Temp2[0]
+
+            postprocess += [ [Temp1, int(Temp2)]]
+        from operator import itemgetter
+        print("Sorted List B based on index 1: % s" % (sorted(postprocess, key=itemgetter(1),reverse=True)))
+        output = (sorted(postprocess, key=itemgetter(1),reverse=True))
+
+        goal1 =  output[0][1]
+        goal2 =  output[1][1]
+        goal3 =  output[2][1]
+
+
+        print ( goal1 + goal2 + goal3)
+        pass
