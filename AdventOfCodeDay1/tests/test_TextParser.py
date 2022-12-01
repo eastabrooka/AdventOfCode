@@ -17,3 +17,15 @@ class TestTextParser(TestCase):
         Test.ReadFile("../input_files/case1.txt")
         List = Test.SplitFileIntoElves()
         print(List)
+
+    def test_runcase2(self):
+        Test = src.TextParser()
+        Test.ReadFile("../input_files/case2.txt")
+        List = Test.SplitFileIntoElves()
+        print(List)
+
+    def test_runcase3(self):
+        Test = src.TextParser()
+        Test.ReadFile("../input_files/case2.txt")
+        List = Test.SplitFileIntoElves()
+        print(List)
