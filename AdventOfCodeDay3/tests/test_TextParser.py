@@ -9,8 +9,19 @@ class TestTextParser(TestCase):
         Test.ReadFile("../input_files/case1.txt")
 
         Score = 0
+
+        ThreeBackpacks = []
+        Count = 0
         for x in Test.FileReadIn :
             x = x.strip("\n")
-            Backpack = src.Backpack(x)
-            Score += Backpack.GetScore()
+            ThreeBackpacks += [x]
+
+            Count+=1
+            if Count>=3:
+                A =                 src.Backpack(ThreeBackpacks[0],ThreeBackpacks[1],ThreeBackpacks[2])
+                Score += A.GetScore()
+                Count = 0
+                ThreeBackpacks  = []
+
+
         print(Score)

@@ -1,34 +1,28 @@
 
 class Backpack:
-    def __init__(self,Contents):
+    def __init__(self,Pack1,Pack2,Pack3):
+        self.Compartment1 = Pack1
+        self.Compartment2 = Pack2
+        self.Compartment3 = Pack3
 
-        SplitPoint = len(Contents)
-        if SplitPoint %2 > 0 :
-            print (" Not Even ")
-        SplitPoint = SplitPoint /2
 
-        self.Compartment1 = Contents[0:int(SplitPoint)]
-        self.Compartment2 = Contents[int(SplitPoint):]
-
+    def FindMatch(self):
+        AppearsThrice = ""
+        for x in self.Compartment1:
+            for y in self.Compartment2:
+                for z in self.Compartment3:
+                    if x == y and y == z :
+                        AppearsThrice = x
+                        return AppearsThrice
 
     def GetScore(self):
+        AppearsThrice = self.FindMatch()
 
-        len1 =  len ( self.Compartment1)
-        len2 = len ( self.Compartment2)
-        if (len1 != len2):
-            print("error ")
-
-        AppearsTwice = []
-        for x in self.Compartment1:
-            if x in self.Compartment2:
-                AppearsTwice = [x]
-        print("Appears Twice",AppearsTwice)
-
-        if ord ( AppearsTwice[0]) >=97 and  ord ( AppearsTwice[0]) <= 122 :
+        if ord ( AppearsThrice[0]) >=97 and  ord ( AppearsThrice[0]) <= 122 :
             # Is between 97 and 122
-            return(ord(AppearsTwice[0]) - 96)
-        elif ord(AppearsTwice[0]) >= 65 and ord(AppearsTwice[0]) <= 90:
-            return((ord(AppearsTwice[0]) - 64) + 26)
+            return(ord(AppearsThrice[0]) - 96)
+        elif ord(AppearsThrice[0]) >= 65 and ord(AppearsThrice[0]) <= 90:
+            return((ord(AppearsThrice[0]) - 64) + 26)
 
 
 
