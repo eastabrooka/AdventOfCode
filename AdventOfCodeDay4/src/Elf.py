@@ -4,7 +4,7 @@ def Iterate( Range1, Range2):
         if x in Range2:
             Count += 1
 
-    if Count >= len(Range2):
+    if Count >0:
         return True
 
 class SpaceCleaner:
