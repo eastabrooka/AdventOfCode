@@ -1,6 +1,6 @@
 
 class RockPaperSissorsRound:
-    def __init__(self,Opponent,Response):
+    def __init__(self,Opponent,EndGame):
         if Opponent == 'A':
             self.Opponent = "Rock"
         elif Opponent == 'B':
@@ -8,49 +8,57 @@ class RockPaperSissorsRound:
         else:
             self.Opponent = "Scissors"
 
-        if Response == 'X':
-            self.Response = "Rock"
-        elif Response == 'Y' :
-            self.Response = "Paper"
+        if EndGame == 'X':
+            self.Response = "Lose"
+        elif EndGame == 'Y' :
+            self.Response = "Draw"
         else:
-            self.Response = "Scissors"
+            self.Response = "Win"
         pass
 
     def WinLossCheck(self):
         player = self.Response
         computer = self.Opponent
 
-        LocalPoints = 0
-        if player == "Rock" :
-            LocalPoints += 1
-        if player == "Paper":
-            LocalPoints += 2
-        if player == "Scissors":
-            LocalPoints += 3
 
-
-        if player == computer:
-            print("Tie!")
-            LocalPoints +=3
-        elif player == "Rock":
+        PlayerChoice = ""
+        if self.Response == "Lose":
             if computer == "Paper":
-                print("You lose!", computer, "covers", player)
-            else:
-                print("You win!", player, "smashes", computer)
-                LocalPoints += 6
-        elif player == "Paper":
-            if computer == "Scissors":
-                print("You lose!", computer, "cut", player)
-            else:
-                print("You win!", player, "covers", computer)
-                LocalPoints += 6
-        elif player == "Scissors":
+                PlayerChoice = "Rock"
             if computer == "Rock":
-                print("You lose...", computer, "smashes", player)
-            else:
-                print("You win!", player, "cut", computer)
-                LocalPoints += 6
+                PlayerChoice = "Scissors"
+            if computer == "Scissors":
+                PlayerChoice = "Paper"
+
+        if self.Response == "Win":
+            if computer == "Paper":
+                PlayerChoice = "Scissors"
+            if computer == "Rock":
+                PlayerChoice = "Paper"
+            if computer == "Scissors":
+                PlayerChoice = "Rock"
+
+        if self.Response == "Draw":
+            if computer == "Paper":
+                PlayerChoice = "Paper"
+            if computer == "Rock":
+                PlayerChoice = "Rock"
+            if computer == "Scissors":
+                PlayerChoice = "Scissors"
+
+        LocalPoints = 0
+        if PlayerChoice == "Rock" :
+            LocalPoints += 1
+        if PlayerChoice == "Paper":
+            LocalPoints += 2
+        if PlayerChoice == "Scissors":
+            LocalPoints += 3
+        if player == "Win":
+            LocalPoints+=6
+        if player == "Draw":
+            LocalPoints+=3
         return LocalPoints
+
 
 def GenerateScore(self):
     '''
