@@ -32,11 +32,17 @@ class CraneOperations:
             From = int(CommandIndex[3])
             To = int(CommandIndex[5])
 
+            Transit = []
             for x in range (0,NumberToMove):
-                Transit = self.Collums[int(From)-1].pop()
-                print("Moving ", Transit)
-                self.Collums[To-1].append(Transit)
-                print("Her")
+                Transit += [self.Collums[int(From)-1].pop()]
+
+            print("Moving ", Transit)
+
+            Transit.reverse()
+            for x in Transit:
+                self.Collums[To-1].append(x)
+            print("Her")
+
 
     def AddCrates(self,Crates):
         #ArrayOfCrates = Crates.split(" ")
