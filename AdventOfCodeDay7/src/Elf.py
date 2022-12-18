@@ -4,6 +4,7 @@ class Directory:
         self.DirName = DirName
         self.ParentDir = CurrentParent
         self.Tree = [None]
+        self.DirSize = 0
         pass
 
     def AddTreeResult(self, File,CurrentDir):
