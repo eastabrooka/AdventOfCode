@@ -11,7 +11,6 @@ class TestTextParser(TestCase):
         for row in Test.FileReadIn:
             row = row.strip("\n")
             Forest.AddRow([*row])
-
         #Done Adding Rows. Lets "Flip" it into normal coordiante form.
         pass
 
@@ -22,9 +21,33 @@ class TestTextParser(TestCase):
         Forest.Forest = FlippedYForest
 
 
-        Forest.GetInnerGridXY()
+        TotalYLen = len(Forest.Forest)
+        TotalXLen = len(Forest.Forest[0])
+        ForestGrid = src.GridStorage(TotalXLen,TotalYLen)
+
+        yindex = 1
+        xindex = 1
+
+        for Y in Forest.Forest:
+            for X in Y:
+                ForestGrid.SetValue(xindex,yindex,int(X))
+                xindex+=1
+            yindex+=1
+            xindex= 1
+
+        Forest.Forest  = ForestGrid
+
 
         Forest.GenerateVisibleGraph()
+
+        print("Getting Perimiter")
+        temp= Forest.Forest.GetX() *2
+        temp+= Forest.Forest.GetY() *2
+        temp -= 4
+        temp += Forest.VisibleCount
+        print("Total Trees Visible", temp)
+
+        pass
 
 
 
