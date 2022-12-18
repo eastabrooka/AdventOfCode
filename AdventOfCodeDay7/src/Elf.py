@@ -1,12 +1,9 @@
 import re
-
-
-
 class Directory:
     def __init__(self,DirName,CurrentParent):
         self.DirName = DirName
         self.ParentDir = CurrentParent
-        self.Tree = []
+        self.Tree = [None]
         pass
 
     def AddTreeResult(self, File,CurrentDir):
@@ -29,14 +26,11 @@ class Directory:
 
         for x in self.Tree:
             if (isinstance(x, str)):
-                print("String")
                 if x in FindString:
                     x = Directory(FindString,CurrentParent)
                     return x
+            elif x is None:
+                pass
             else:
-                print("Directory")
                 if x.DirName in FindString:
                     return x
-
-    def FindDirectories(self,Temp):
-        pass

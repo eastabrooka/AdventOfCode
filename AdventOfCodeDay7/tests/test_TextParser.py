@@ -1,76 +1,29 @@
 from unittest import TestCase
 import src
 
-def ProcessSpace(Handle):
-    pass
+def CheckForDirectories(Tree):
+    if (isinstance(Tree, src.Directory)):
+        return True
+    elif (isinstance(Tree, str)):
+        return False
 
-
-def GetDirs(Tree):
-    Dir = []
-    try:
-        if (isinstance(Tree.Tree, src.Directory)):
-            print("Directory")
+def CheckForTree(Tree):
+    try :
+        if len(Tree.Tree)>0:
             return Tree.Tree
-
-        for Element in Tree.Tree:
-            print(Element)
-            if (isinstance(Element, str)):
-                print("String")
-            else:
-                print("Directory")
-                Dir += [Element]
-        if (len(Dir) > 0):
-            return Dir
     except:
-        for Element in Tree:
-            print(Element)
-            if (isinstance(Element, str)):
-                print("String")
-            else:
-                print("Directory")
-                Dir += [Element]
-        else:
-            return False
-    return Dir
+        return Tree
 
 
-def CheckForDirs(Tree):
-    Dir = []
-    try:
-        for Element in Tree.Tree:
-            print(Element)
-            if (isinstance(Element, str)):
-                print("String")
-            else:
-                print("Directory")
-                return True
-        else:
-            return False
-    except:
-        try:
-            for Element in Tree:
-                print(Element)
-                if (isinstance(Element, str)):
-                    print("String")
-                else:
-                    print("Directory")
-                    return True
-            else:
-                return False
-        except:
+def Traverse(Root):
+    for Element in CheckForTree(Root):
+        if Element is None:
             pass
-
-
-def Recurse(Handle):
-    if (CheckForDirs(Handle)):
-        print("Dirs Found")
-        Temp = GetDirs(Handle)
-        Recurse(Temp)
-        ProcessSpace(Temp)
-    else:
-        print("SpaceCalculate")
-        ProcessSpace(Handle)
-
+        else :
+            if (CheckForDirectories(Element)):
+                Traverse(Element)
+            else:
+                print("Sum")
 
 class TestTextParser(TestCase):
 
@@ -84,32 +37,32 @@ class TestTextParser(TestCase):
 
         for x in Test.FileReadIn:
             if ("$" in x):
-                print("Command",x)
+                #print("Command",x)
 
                 if ("$ cd /" in x):
-                    print("Set Hndl to Root")
+                    #print("Set Hndl to Root")
                     CurrentHandle = root
 
                 elif ("$ ls" in x):
-                    print("Starting Read In")
+                    #print("Starting Read In")
                     ReportInProgress = True
 
                 elif ("$ cd .." in x):
-                    print("Change Directory Up")
+                    #print("Change Directory Up")
                     CurrentHandle = CurrentHandle.CDUp()
 
                 elif ("$ cd" in x):
-                    print("Change Directory")
+                    #print("Change Directory")
                     #Check For Dir, If No Dir, Then create one.
                     CurrentHandle = CurrentHandle.FindDirectory(x,CurrentHandle)
-
-
             else:
-                print("Result",x)
+                #print("Result",x)
                 CurrentHandle.AddTreeResult(x,CurrentHandle)
 
-        print("Done")
-        Recurse(root)
+        #print("Done")
+        Traverse(root)
+
+
 
 
 
