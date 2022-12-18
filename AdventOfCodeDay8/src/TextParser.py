@@ -18,7 +18,6 @@ class TextParser:
                 self.FileReadIn += [line]
                 # if line is empty
                 # end of file is reached
-                print("Line{}: {}".format(count, line.strip()))
 
             print(fp.read())
             fp.close()

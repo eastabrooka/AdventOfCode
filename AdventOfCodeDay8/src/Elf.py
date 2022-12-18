@@ -19,32 +19,44 @@ def IsTreeVisible(Grid, TreePosition):
 
 
     for Y in range(CurrentPositionY + 1, EndOfGridY+1):
-
+        print("Checking ",CurrentPositionX ," ",Y)
         InspectedTreeHeight = Grid.GetValue(CurrentPositionX, Y)
         if InspectedTreeHeight >= CurrentTreeHeight:
             HiddenCount += 1
             break;
+    print("Stopped")
 
     for Y in range(CurrentPositionY - 1, -1, -1):
+        print("Checking ",CurrentPositionX ," ",Y)
+
         InspectedTreeHeight = Grid.GetValue(CurrentPositionX, Y)
         if InspectedTreeHeight >= CurrentTreeHeight:
             #print("Covered Looking Down !")
             HiddenCount += 1
             break;
+    print("Stopped")
 
     for X in range(CurrentPositionX + 1, EndOfGridX + 1):
+        print("Checking ",X ," ",CurrentPositionY)
+
         InspectedTreeHeight = Grid.GetValue(X, CurrentPositionY)
         if InspectedTreeHeight >= CurrentTreeHeight:
             #print("Covered Looking Right !")
             HiddenCount += 1
             break;
+    print("Stopped")
+
 
     for X in range(CurrentPositionX - 1, -1, -1):
+        print("Checking ",X ," ",CurrentPositionY)
+
         InspectedTreeHeight = Grid.GetValue(X, CurrentPositionY)
         if InspectedTreeHeight >= CurrentTreeHeight:
             #print("Covered Looking Left !")
             HiddenCount += 1
             break;
+    print("Stopped")
+
 
     if HiddenCount == 4:
         print("Hidden", CurrentPositionX, CurrentPositionY)

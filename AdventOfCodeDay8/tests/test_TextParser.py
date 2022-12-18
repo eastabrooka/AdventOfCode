@@ -41,10 +41,10 @@ class TestTextParser(TestCase):
         Forest.GenerateVisibleGraph()
 
         print("Getting Perimiter")
-        temp= Forest.Forest.GetX() *2
-        temp+= Forest.Forest.GetY() *2
-        temp -= 4
-        temp += Forest.VisibleCount
+        print( Forest.Forest.GetX())
+        print( Forest.Forest.GetY())
+        Perimiter = (Forest.Forest.GetX() * 2 ) + (Forest.Forest.GetY() *2) - 4
+        temp = Forest.VisibleCount + Perimiter
         print("Total Trees Visible", temp)
 
         pass
